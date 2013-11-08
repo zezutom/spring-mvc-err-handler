@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8" />
+<head>
+</head>
+	<body>
+		Person Id: <input data-bind='value: byId' />		
+		<input type="button" data-bind='click: search' value="Search" />
+		<div data-bind="visible: people().length > 0" >
+			<table>
+				<caption>Search Results</caption>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+				</tr>
+				<tbody data-bind="foreach: people">
+					<tr>
+						<td data-bind='text: id'></td>
+						<td data-bind='text: name'></td>
+					</tr>				
+				</tbody>
+			</table>
+		</div>
+		<script type='text/javascript' th:src="@{/resources/zepto-1.0.js}"></script>
+		<script type='text/javascript' th:src="@{/resources/knockout-3.0.0.js}"></script>
+		<script type='text/javascript' th:src="@{/resources/model.js}"></script>			
+	</body>
+</html>
