@@ -18,6 +18,7 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String home() {
+		//throw new IllegalStateException();
 		return "home";
 	}
 	

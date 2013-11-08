@@ -16,6 +16,7 @@ function PersonViewModel() {
 			query += "/" + byId;
 				
 		$.getJSON(query, function(data) {
+			// TODO: catch failed responses (i.e. status code != HTTP 200)
 			var people = $.map(data, function(item) {return new Person(item);});
 			self.people(people);
 		});

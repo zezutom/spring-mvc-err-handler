@@ -30,7 +30,7 @@ public class PersonService {
 	}
 	
 	public List<Person> search(Long id) {
-		List<Person> people = new ArrayList<>();
+		List<Person> people = new ArrayList<Person>();
 		
 		if (id != null) 
 			people.add(byId(id));
