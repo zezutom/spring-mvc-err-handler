@@ -4,7 +4,11 @@
 <head>
 </head>
 	<body>
-		Person Id: <input data-bind='value: byId' />		
+		Person Id: <input data-bind='value: byId' />	
+		<select data-bind='value: output'>
+			<option value="json" selected="selected">JSON</option>
+			<option value="html">HTML</option>
+		</select>	
 		<input type="button" data-bind='click: search' value="Search" />
 		<div data-bind="visible: people().length > 0" >
 			<table>
@@ -20,6 +24,9 @@
 					</tr>				
 				</tbody>
 			</table>
+		</div>
+		<div data-bind="visible: error() != null">
+			<span data-bind='text: error'></span>
 		</div>
 		<script type='text/javascript' th:src="@{/resources/zepto-1.0.js}"></script>
 		<script type='text/javascript' th:src="@{/resources/knockout-3.0.0.js}"></script>

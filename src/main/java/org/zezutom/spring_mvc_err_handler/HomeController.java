@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
@@ -22,16 +23,26 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value="/person/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/person/{id}/json", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Person> getPerson(@PathVariable Long id) {		
+	public List<Person> searchById(@PathVariable Long id) {		
 		return personService.search(id);
 	}
 	
-	@RequestMapping(value="/person", method=RequestMethod.GET)
+	@RequestMapping(value="/person/json", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Person> getPeopleAsJson() {
+	public List<Person> searchAll() {
 		return personService.search();
 	}	
-		
+	
+	@RequestMapping(value="/person/{id}", method=RequestMethod.GET)
+	public ModelAndView defaultSearchById(@PathVariable Long id) {
+		return MyMvcUtils.getMaV("search", "result", personService.search(id));
+	}
+
+	@RequestMapping(value="/person", method=RequestMethod.GET)
+	public ModelAndView defaultSearchAll() {
+		return MyMvcUtils.getMaV("search", "result", personService.search());
+	}
+	
 }
