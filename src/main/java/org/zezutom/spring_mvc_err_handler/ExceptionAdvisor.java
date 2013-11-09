@@ -26,7 +26,7 @@ public class ExceptionAdvisor {
 	}
 	
 	private ModelAndView handleException(String message, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("error", "message", message);
+		ModelAndView mav = MyMvcUtils.getMaV("error", "message", message);
 				
 		if (MediaType.APPLICATION_JSON_VALUE.equals(request.getHeader("Accept")))					
 			mav.setView(new MappingJacksonJsonView());
